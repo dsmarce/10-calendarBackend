@@ -2,7 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 
-console.log(process.env);
+//console.log(process.env);
 //crear el servidor de express
 const app= express();
 
@@ -10,13 +10,14 @@ const app= express();
 
 app.use(express.static('public'));
 //rutas
+//TODO: auth //crear, login, renew del token jwt
+app.use('/api/auth', require('./routes/auth'));
 
-// app.get('/', (req, res)=>{
-//     res.json({ok:true});
-// });
+//TODO: CRUD: eventos
+
 
 //escuchar peticiones
 
-app.listen(process.env, ()=> {
-    console.log(`Servidor corriendo en puerto ${4000}`);
+app.listen(process.env.PORT, ()=> {
+    console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
 })

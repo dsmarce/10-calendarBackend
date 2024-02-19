@@ -55,14 +55,6 @@ http://localhost:4000
 se va a leer Cannot GET /
 se queda trabado porque no ninguna ruta
 
-Rutas
-------
-la ruta / va a responder este json 
-
-app.get('/', (req, res)=>{
-    res.json({ok:true});
-});
-
 Variables de entorno
 --------------------
 Archivo .env
@@ -77,6 +69,11 @@ configuracion en index.js
 --------------------------
 require('dotenv').config();
 
+//para indicar en que puerto corre la app
+app.listen(process.env.PORT, ()=> {
+    console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
+})
+
 
 Carpeta publica
 ---------------
@@ -86,3 +83,18 @@ crear un index.html y styles.css
 Configuracion en index.js 
 --------------------------
 app.use(express.static('public'));
+
+
+Rutas
+------
+Se crea una carpeta routes y adentro van los .js que tengan las rutas de los metodos
+la ruta / va a responder este json 
+
+const express= require('express');
+const router= express.Router();
+
+app.get('/', (req, res)=>{
+    res.json({ok:true});
+});
+
+module.exports= router;
