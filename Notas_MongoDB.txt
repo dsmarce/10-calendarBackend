@@ -1,0 +1,59 @@
+https://cloud.mongodb.com/
+
+Crear la base de datos Clouster
+
+Database > Database Deployments > connect > compass
+
+string de conexion (sin la barra final para que entre al raiz)
+mongodb+srv://mern_user:<password>@calendardb.jlxhlbb.mongodb.net
+
+Security Quickstart
+---------------------
+1) Crear el usuario y clave para conectarse
+2) Agregar la ip autorizada puede ser 0.0.0.0/0
+
+
+Instalar MongoCompass
+https://downloads.mongodb.com/compass/mongodb-compass-1.42.1-win32-x64.msi
+
+Conectar la base y marcarla como favorita
+
+mongodb+srv://mern_user:<password>@calendardb.jlxhlbb.mongodb.net
+
+mongoose
+--------
+Para conectarse desde node a mongodb con mas facilidad
+
+https://mongoosejs.com/
+
+instalarlo -->  npm i mongoose
+
+Consumir la base de datos
+--------------------------
+config.js -->
+const mongoose = require('mongoose');
+
+const dbConnection = async()=> {
+    try {
+        await mongoose.connect(process.env.DB_CNN,
+        {
+            useNewUrlParser:true,
+            useUnifiedTopology:true,
+            //useCreateIndex:true ---> dice que no esta soportado
+        });
+
+        console.log('DB Online');
+
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error al inicializar base de datos');
+    }
+
+}
+
+module.exports= {dbConnection};
+
+en Index.js ---> 
+
+const {dbConnection} = require('./database/config');
+dbConnection();

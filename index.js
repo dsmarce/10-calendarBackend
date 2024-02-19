@@ -1,6 +1,6 @@
 //configuracion inicial de node
 const express = require('express');
-const { use } = require('./routes/auth');
+const {dbConnection} = require('./database/config');
 require('dotenv').config();
 
 //console.log(process.env);
@@ -12,6 +12,8 @@ app.use(express.static('public'));
 //lectura y parseo del body (middleware)
 app.use(express.json());
 
+//base de datos
+dbConnection();
 //rutas
 //TODO: auth //crear, login, renew del token jwt
 app.use('/api/auth', require('./routes/auth'));
