@@ -1,0 +1,88 @@
+1) package.json
+npm init -y
+2) probar si anda
+crear un index.js con un console.log
+en la terminal para ejecutarlo
+node index.js
+3) nodemon
+A medida que guardo los cambios ya va actualizando la aplicacion que tengo corriendo
+* Intalarlo de forma global desde el cmd de win como administrador
+npm i nodemon -g
+
+* para ejecutar el programa con nodemon
+nodemon index.js
+
+Para cancelar --> control c 
+limpia la consola --> ctrl l
+
+4) Configuracion en package.json
+dev --> para desarrollo que ejecute con nodemon para ver las actualizaciones
+start --> produccion ejecuta con node
+
+ "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  }
+
+
+con estos script se ejecuta asi:
+
+ node -->  npm start
+ nodemon --> npm run dev 
+
+ 5) express
+ npm i express
+
+ configurar el servidor de express
+
+
+ //configuracion inicial de node
+const express = require('express');
+
+//crear el servidor de express
+const app= express();
+
+//escuchar peticiones
+
+app.listen(4000, ()=> {
+    console.log(`Servidor corriendo en puerto ${4000}`);
+})
+
+Ya se puede ver desde el browser o postman
+
+http://localhost:4000
+
+se va a leer Cannot GET /
+se queda trabado porque no ninguna ruta
+
+Rutas
+------
+la ruta / va a responder este json 
+
+app.get('/', (req, res)=>{
+    res.json({ok:true});
+});
+
+Variables de entorno
+--------------------
+Archivo .env
+se agreganen mayuscula y sin ; final
+
+PORT=400
+
+En la consola ejecutar para establecerla en el ambiente de node
+npm i dotenv
+
+configuracion en index.js
+--------------------------
+require('dotenv').config();
+
+
+Carpeta publica
+---------------
+crear un index.html y styles.css
+! tab --> crea un html basico 
+
+Configuracion en index.js 
+--------------------------
+app.use(express.static('public'));
