@@ -98,3 +98,36 @@ app.get('/', (req, res)=>{
 });
 
 module.exports= router;
+
+lectura y parseo del body
+-------------------------
+app.use(express.json());
+
+En el metodo --> colocar res= response para tener el tipado json de la respuesta
+
+const crearUsuario= (req, res= response)=>{}
+
+respuesta  https://restapitutorial.com/httpstatuscodes.html
+----------
+
+Puede haber un solo res.json por metodo
+si hay mas de uno hay que anteponerle return --> return res.json({})
+
+* Respuesta con error -- status 400
+
+ return res.status(400).json({
+      ok:false,
+      msg:'El nombre debe ser de 5 letras'
+  });
+
+* Respuesta OK -- status 200
+
+res.json({
+    ok:true,
+    msg:'loginUsuario'
+});
+
+Express validator (middleware)
+-------------------
+npm i express-validator
+
