@@ -57,3 +57,8 @@ en Index.js --->
 
 const {dbConnection} = require('./database/config');
 dbConnection();
+
+Busqueda en DB
+--------------
+
+ const eventos= await Evento.find().populate('user','name email');
