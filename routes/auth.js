@@ -5,7 +5,7 @@ const router= express.Router();
 
 const { crearUsuario, loginUsuario, revalidarToken}= require('../controllers/auth');
 const { fieldsValidator } = require('../middlewares/fieldsValidator');
-
+const { validateJWT} = require('../middlewares/jwtValidator')
 router.post(
     '/',
     //middlewares
@@ -29,6 +29,6 @@ router.post(
     crearUsuario
 );
 
-router.get('/renew', revalidarToken);
+router.get('/renew', validateJWT, revalidarToken);
 
 module.exports= router;

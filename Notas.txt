@@ -131,6 +131,19 @@ Express validator (middleware)
 -------------------
 npm i express-validator
 
+Encriptacion
+------------
+Para encriptar la password con hash de una sola via
 
-mern_user
-Ql5fms6hDlPe52DT
+npm i bcryptjs
+
+ //encriptar password
+    const salt=bcrypt.genSaltSync();
+    usuario.password= bcrypt.hashSync(password, salt);
+
+//confirmar la clave
+    const validPassword= bcrypt.compareSync(password, usuario.password);     
+
+JWT
+---
+npm i jsonwebtoken
