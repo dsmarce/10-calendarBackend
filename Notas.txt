@@ -147,3 +147,31 @@ npm i bcryptjs
 JWT
 ---
 npm i jsonwebtoken
+
+Creacion del token
+---------------------
+jwt.sign(payload, process.env.SECRET_JWT_SEED, {
+    expiresIn:'2h'
+}, (err, token)=>{
+    if (err){
+        console.log('No se pudo generar el token');
+        reject(err);                
+    }
+    resolve(token);
+})
+
+Verficacion del token
+----------------------
+const {uid, name}= jwt.verify(
+    token, 
+    process.env.SECRET_JWT_SEED
+);
+
+Cors
+-----
+para protejer rutas
+npm install cors
+
+en index.js
+const cors= require('cors')
+app.use(cors());
