@@ -19,10 +19,8 @@ dbConnection();
 //cords
 app.use(cors());
 //rutas
-//TODO: auth //crear, login, renew del token jwt
 app.use('/api/auth', require('./routes/auth'));
-//TODO: CRUD: eventos
-
+app.use('/api/events', require('./routes/events'));
 
 //escuchar peticiones
 

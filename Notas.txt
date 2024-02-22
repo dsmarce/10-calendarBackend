@@ -99,6 +99,13 @@ app.get('/', (req, res)=>{
 
 module.exports= router;
 
+Agregar middlewares
+-------------------
+router.get('/renew', [ validaciones, middleware1, middleware2 ], revalidarToken);
+
+//todas las rutas que esten abajo de esta linea tiene que pasar la validacion del JWT
+router.use(validateJWT);
+
 lectura y parseo del body
 -------------------------
 app.use(express.json());
@@ -175,3 +182,8 @@ npm install cors
 en index.js
 const cors= require('cors')
 app.use(cors());
+
+
+Validar fechas
+---------------
+npm install moment
