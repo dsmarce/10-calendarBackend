@@ -15,18 +15,18 @@ const  getEventos=async(req, res= response)=>{
 //crear nuevo evento
 const crearEvento=async(req, res= response)=>{
 
-    const evento= new Evento(req.body);
+    const data= new Evento(req.body);
 
     try {
         
-        evento.user= req.uid;
-        const objDB =  await evento.save();
+        data.user= req.uid;
+        const evento =  await data.save();
 
        return res.json(
         {
             ok:true,
             msg:'crear evento',
-            objDB
+            evento
         });
 
     } catch (error) {
@@ -44,15 +44,15 @@ const actualizarEvento= async(req= request, res= response)=>{
 
     try {
 
-        const objDB= await Evento.findById(eventoId);
-        if (!objDB){
+        const evento= await Evento.findById(eventoId);
+        if (!evento){
             return res.status(404).json({
                 ok:false,
                 msg:'Evento no existe.'
             });
         }
 
-        if (objDB.user.toString()!=uid){
+        if (evento.user.toString()!=uid){
             return res.status(401).json({
                 ok:false,
                 msg:'No tiene privilegio de editar este evento.'
@@ -87,15 +87,15 @@ const eliminarEvento=async(req= request, res= response)=>{
     const uid= req.uid;
 
     try {
-        const objDB= await Evento.findById(eventoId);
-        if (!objDB){
+        const evento= await Evento.findById(eventoId);
+        if (!evento){
             return res.status(404).json({
                 ok:false,
                 msg:'Evento no existe.'
             });
         }
 
-        if (objDB.user.toString()!=uid){
+        if (evento.user.toString()!=uid){
             return res.status(401).json({
                 ok:false,
                 msg:'No tiene privilegio de eliminar este evento.'
