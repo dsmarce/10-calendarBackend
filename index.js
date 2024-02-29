@@ -22,6 +22,10 @@ app.use(cors());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/events', require('./routes/events'));
 
+//si llega algo que no es ninguna de las rutas permitidas
+app.get('*', (req,res)=>{
+    res.sendFile(__dirname+ '/public/index.html');
+})
 //escuchar peticiones
 
 app.listen(process.env.PORT, ()=> {
