@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "cd7ec4cf-22ef-47fe-8ec5-3c85185941ef",
+		"name": "Udemy",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1451052"
+	},
+	"item": [
+		{
+			"name": "Cloudinary",
+			"item": [
+				{
+					"name": "upload image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/marcela.dasilva/Pictures/evento2erRechazo.PNG"
+								},
+								{
+									"key": "upload-preset",
+									"value": "journal",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.cloudinary.com/v1_1/deiqpj5mt/upload",
+							"protocol": "https",
+							"host": [
+								"api",
+								"cloudinary",
+								"com"
+							],
+							"path": [
+								"v1_1",
+								"deiqpj5mt",
+								"upload"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			],
+			"description": "para subir imagenes a la nube\n\n[https://cloudinary.com/documentation/image_upload_api_reference](https://cloudinary.com/documentation/image_upload_api_reference)"
+		},
+		{
+			"name": "CalendarBackend",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Captura el token JWT y lo copia en la variable de entorno\r",
+											"var jsonData = pm.response.json();\r",
+											"var jwtToken = jsonData.token; \r",
+											"pm.collectionVariables.set('usuJWT', jwtToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"email\":\"jose@yopmail.com\",\r\n//     \"password\":\"zxc89076\"\r\n// }\r\n\r\n// {\r\n//     \"email\":\"maria@yopmail.com\",\r\n//     \"password\":\"abc1234\"\r\n// }\r\n\r\n{\r\n    \"email\":\"juan@yopmail.com\",\r\n    \"password\":\"yuiop0000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlCalendarApi}}/api/auth",
+									"host": [
+										"{{urlCalendarApi}}"
+									],
+									"path": [
+										"api",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auth/new",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Captura el token JWT y lo copia en la variable de entorno\r",
+											"var jsonData = pm.response.json();\r",
+											"var jwtToken = jsonData.token; \r",
+											"pm.collectionVariables.set('usuJWT', jwtToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"name\":\"jose\",\r\n//     \"email\":\"jose@yopmail.com\",\r\n//     \"password\":\"zxc89076\"\r\n// }\r\n\r\n// {\r\n//     \"name\":\"maria\",\r\n//     \"email\":\"maria@yopmail.com\",\r\n//     \"password\":\"abc1234\"\r\n// }\r\n\r\n// {\r\n//     \"name\":\"juan\",\r\n//     \"email\":\"juan@yopmail.com\",\r\n//     \"password\":\"yuiop0000\"\r\n// }\r\n\r\n\r\n{\r\n    \"name\":\"Leo\",\r\n    \"email\":\"leomessi@yopmail.com\",\r\n    \"password\":\"probandoMiClave\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"new"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "auth/renew",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Captura el token JWT y lo copia en la variable de entorno\r",
+											"var jsonData = pm.response.json();\r",
+											"var jwtToken = jsonData.token; \r",
+											"pm.collectionVariables.set('usuJWT', jwtToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "{{usuJWT}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/renew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"renew"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "events",
+					"item": [
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "{{JWTMaria}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4000/api/events",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "{{usuJWT}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\":\"Salida al cine\",\r\n    \"start\":111,\r\n    \"end\":222,\r\n    \"notes\":\"comprar entradas\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{urlCalendarApi}}/api/events/65d7919593d428d81e939858",
+									"host": [
+										"{{urlCalendarApi}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"65d7919593d428d81e939858"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "{{JWTMaria}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4000/api/events/65d7919593d428d81e939858",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"events",
+										"65d7919593d428d81e939858"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "{{usuJWT}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"title\":\"Fiesta\",\r\n//     \"start\":1,\r\n//     \"end\":333,\r\n//     \"notes\":\"que hay que llevar\"\r\n// }\r\n\r\n{\r\n    \"title\":\"Trabajo a revisar\",\r\n    \"start\":133,\r\n    \"end\":88877,\r\n    \"notes\":\"De la escuela\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/events",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "demo app",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "demo app front",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://one0-calendar.onrender.com",
+							"protocol": "https",
+							"host": [
+								"one0-calendar",
+								"onrender",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "[https://calendar-api-4jnk.onrender.com](https://calendar-api-4jnk.onrender.com)"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		},
+		{
+			"key": "usuJWT",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWQ3NDgyMWExN2IzYWY3N2UzM2IxMzIiLCJuYW1lIjoiTGVvIE1lc3NpIiwiaWF0IjoxNzA4NjA3NTIxLCJleHAiOjE3MDg2MTQ3MjF9.AsdglzxP74mL1YISoSzoeTKW6grjyqnQkKj6_Z4M9Tc",
+			"type": "string"
+		},
+		{
+			"key": "urlCalendarApi",
+			"value": "https://calendar-api-4jnk.onrender.com",
+			"type": "string"
+		}
+	]
+}
